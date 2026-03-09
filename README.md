@@ -1,6 +1,10 @@
-# Claude Usage Mac Widget
+# Claude Usage Widget
 
-A lightweight macOS desktop widget that shows your Claude usage in real time — with pace tracking and reset countdown.
+A lightweight macOS desktop widget that tracks your Claude usage limits and rate limits in real time. Know exactly when you're about to hit Claude's API usage cap — before it happens.
+
+<p align="center">
+  <img src="assets/demo.gif" width="220" alt="Claude Usage Widget demo — live usage tracking" />
+</p>
 
 <p align="center">
   <img src="assets/widget-on-track.png" width="180" alt="Widget — on track" />
@@ -17,6 +21,8 @@ A lightweight macOS desktop widget that shows your Claude usage in real time —
   <img src="https://img.shields.io/badge/Swift-5.9+-orange" />
   <img src="https://img.shields.io/badge/License-MIT-green" />
   <img src="https://img.shields.io/badge/No_Dependencies-lightgrey" />
+  <img src="https://img.shields.io/badge/Homebrew-available-blue" />
+  <img src="https://img.shields.io/github/stars/rishi-banerjee1/claude-usage-widget?style=flat&label=Stars" />
 </p>
 
 ---
@@ -85,32 +91,38 @@ No tab switching. No guesswork.
 
 ## Install
 
-Three ways to get the widget — pick the one that fits:
+Four ways to get the widget — pick the one that fits:
 
-### Option 1: One-Command Install (Recommended)
+### Option 1: Homebrew (Recommended)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/rishi-banerjee1/Claude-Usage-Mac-Widget/main/install.sh | bash
+brew install --cask rishi-banerjee1/ai-tools/claude-usage-widget
+```
+
+### Option 2: One-Command Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/rishi-banerjee1/claude-usage-widget/main/install.sh | bash
 ```
 
 Downloads the pre-built app, installs to `/Applications`, removes Gatekeeper quarantine, and launches it. No build tools needed.
 
-### Option 2: Download from GitHub Releases
+### Option 3: Download from GitHub Releases
 
-1. Go to [**Releases**](https://github.com/rishi-banerjee1/Claude-Usage-Mac-Widget/releases/latest)
+1. Go to [**Releases**](https://github.com/rishi-banerjee1/claude-usage-widget/releases/latest)
 2. Download `ClaudeUsage.app.zip`
 3. Unzip and move `ClaudeUsage.app` to `/Applications`
 4. Double-click to launch
 
 > **Gatekeeper warning?** macOS may say the app is from an unidentified developer. Fix: `xattr -dr com.apple.quarantine /Applications/ClaudeUsage.app` or right-click → Open → Open.
 
-### Option 3: Build from Source
+### Option 4: Build from Source
 
 Requires macOS 13+ and Xcode Command Line Tools (`xcode-select --install`).
 
 ```bash
-git clone https://github.com/rishi-banerjee1/Claude-Usage-Mac-Widget.git
-cd Claude-Usage-Mac-Widget
+git clone https://github.com/rishi-banerjee1/claude-usage-widget.git
+cd claude-usage-widget
 chmod +x build.sh run.sh setup.sh generate-icon.sh
 ./build.sh
 ./setup.sh          # Interactive credential setup
@@ -346,13 +358,13 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) ClaudeUsageWidget/1.
 - [x] One-command installer + GitHub Releases distribution
 - [ ] Optional usage history graph
 - [ ] Signed / notarized build
-- [ ] Homebrew formula
+- [x] Homebrew cask — `brew install --cask rishi-banerjee1/ai-tools/claude-usage-widget`
 
 ---
 
 ## Credits
 
-Built on top of [claude-usage](https://github.com/amoga-org/claude-usage) by **[amoga.io](https://amoga.io)**. Desktop widget adaptation by [@rishiatlan](https://github.com/rishiatlan).
+Built on top of [claude-usage](https://github.com/amoga-org/claude-usage) by **[amoga.io](https://amoga.io)**. Desktop widget adaptation by [@rishi-banerjee1](https://github.com/rishi-banerjee1).
 
 ## License
 

@@ -1,11 +1,11 @@
 #!/bin/bash
 # Claude Usage Widget — one-command installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/rishiatlan/Claude-Usage-Mac-Widget/main/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/rishi-banerjee1/claude-usage-widget/main/install.sh | bash
 
 set -e
 
 APP_NAME="ClaudeUsage"
-REPO="rishiatlan/Claude-Usage-Mac-Widget"
+REPO="rishi-banerjee1/claude-usage-widget"
 INSTALL_DIR="/Applications"
 TMP_DIR=$(mktemp -d)
 

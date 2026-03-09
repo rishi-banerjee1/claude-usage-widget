@@ -48,7 +48,7 @@ class LoginItemManager {
 
 class UpdateChecker {
     static let shared = UpdateChecker()
-    private let remoteVersionURL = "https://raw.githubusercontent.com/rishiatlan/Claude-Usage-Mac-Widget/main/VERSION"
+    private let remoteVersionURL = "https://raw.githubusercontent.com/rishi-banerjee1/claude-usage-widget/main/VERSION"
     private let defaults = UserDefaults.standard
     private let lastCheckKey = "lastUpdateCheckDate"
     private let dismissedVersionKey = "dismissedUpdateVersion"

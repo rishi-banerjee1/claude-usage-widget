@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Usage Widget — Track Claude API Limits in Real Time</title>
+  <meta name="description" content="A floating macOS desktop widget that tracks your Claude usage limits and rate limits in real time. Single-file Swift, no dependencies. Install via Homebrew.">
+  <meta name="keywords" content="Claude, Claude AI, usage limits, rate limits, macOS widget, developer tools, API tracker">
+  <meta property="og:title" content="Claude Usage Widget">
+  <meta property="og:description" content="Floating macOS widget that tracks Claude API usage limits in real time.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rishi-banerjee1.github.io/claude-usage-widget/">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e6;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 0 48px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: #9a9aaf;
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    .hero .demo-gif {
+      max-width: 220px;
+      border-radius: 16px;
+      margin-bottom: 32px;
+    }
+
+    /* Install CTA */
+    .install-block {
+      background: #141420;
+      border: 1px solid #2a2a3d;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 0 auto 48px;
+      max-width: 560px;
+      text-align: center;
+    }
+
+    .install-block .label {
+      font-size: 0.85rem;
+      color: #6a6a80;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .install-block code {
+      display: block;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.95rem;
+      color: #7dd3fc;
+      background: #0d0d18;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid #1e1e30;
+      word-break: break-all;
+      cursor: text;
+      user-select: all;
+    }
+
+    .install-block .alt {
+      font-size: 0.85rem;
+      color: #6a6a80;
+      margin-top: 12px;
+    }
+
+    .install-block .alt a {
+      color: #7dd3fc;
+      text-decoration: none;
+    }
+
+    .install-block .alt a:hover {
+      text-decoration: underline;
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid #1e1e30;
+      margin: 48px 0;
+    }
+
+    /* Features */
+    .features {
+      padding-bottom: 48px;
+    }
+
+    .features h2 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #141420;
+      border: 1px solid #2a2a3d;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .feature-card .icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .feature-card h3 {
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 0.82rem;
+      color: #8a8a9f;
+    }
+
+    /* Screenshots */
+    .screenshots {
+      text-align: center;
+      padding-bottom: 48px;
+    }
+
+    .screenshots h2 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+
+    .screenshots img {
+      height: 160px;
+      margin: 0 8px 8px;
+      border-radius: 12px;
+    }
+
+    .screenshots .caption {
+      font-size: 0.8rem;
+      color: #6a6a80;
+      margin-top: 4px;
+    }
+
+    /* Why */
+    .why {
+      padding-bottom: 48px;
+    }
+
+    .why h2 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .why ul {
+      list-style: none;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .why li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+      color: #b0b0c0;
+      font-size: 0.95rem;
+    }
+
+    .why li::before {
+      content: "\2022";
+      color: #7dd3fc;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 32px 0;
+      border-top: 1px solid #1e1e30;
+      font-size: 0.85rem;
+      color: #6a6a80;
+    }
+
+    .footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a1a2e;
+      border: 1px solid #2a2a3d;
+      border-radius: 8px;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-top: 24px;
+      transition: background 0.2s;
+    }
+
+    .github-link:hover {
+      background: #222240;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero { padding: 48px 0 32px; }
+      .hero h1 { font-size: 1.5rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .screenshots img { height: 120px; margin: 0 4px 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Claude Usage Widget</h1>
+      <p class="subtitle">A floating macOS widget that tracks your Claude usage limits in real time. Know when you're about to get rate-limited.</p>
+      <img src="../assets/demo.gif" alt="Claude Usage Widget demo" class="demo-gif" onerror="this.src='../assets/widget-on-track.png'">
+    </section>
+
+    <!-- Install -->
+    <div class="install-block">
+      <div class="label">Install (macOS 13+)</div>
+      <code>brew install --cask rishi-banerjee1/ai-tools/claude-usage-widget</code>
+      <div class="alt">Or <a href="https://github.com/rishi-banerjee1/claude-usage-widget/releases/latest">download from GitHub Releases</a></div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Features -->
+    <section class="features">
+      <h2>What It Does</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">&#x1F534;</div>
+          <h3>Live Usage %</h3>
+          <p>Progress ring with color-coded pace tracking: green, orange, red</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x23F1;</div>
+          <h3>Reset Countdown</h3>
+          <p>Know exactly when your limits reset. No more guessing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F4A0;</div>
+          <h3>Compact Mode</h3>
+          <p>Double-click to shrink to a tiny frameless ring on your desktop</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Screenshots -->
+    <section class="screenshots">
+      <h2>Widget States</h2>
+      <div>
+        <img src="../assets/widget-on-track.png" alt="On track">
+        <img src="../assets/widget-compact.png" alt="Compact mode" style="height: 76px;">
+        <img src="../assets/widget-still-usable.png" alt="Still usable">
+        <img src="../assets/widget-session-expired.png" alt="Session expired">
+      </div>
+      <div class="caption">On track &nbsp; | &nbsp; Compact &nbsp; | &nbsp; Still usable &nbsp; | &nbsp; Session expired</div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Why -->
+    <section class="why">
+      <h2>Why This Exists</h2>
+      <ul>
+        <li>Claude's rate limits are invisible until you hit them</li>
+        <li>The web UI doesn't show your usage prominently</li>
+        <li>No notification when you're close to the limit</li>
+        <li>This widget keeps it visible on your desktop at all times</li>
+      </ul>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Footer -->
+    <section class="footer">
+      <div>Single-file Swift &middot; No dependencies &middot; ~512 KB &middot; MIT License</div>
+      <a href="https://github.com/rishi-banerjee1/claude-usage-widget" class="github-link">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+        View on GitHub
+      </a>
+      <div style="margin-top: 16px;">
+        <img src="https://img.shields.io/github/stars/rishi-banerjee1/claude-usage-widget?style=flat&label=Stars&color=7dd3fc" alt="GitHub stars">
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

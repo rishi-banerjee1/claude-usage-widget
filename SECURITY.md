@@ -13,7 +13,7 @@ Only the latest release is actively maintained and receives security fixes.
 
 **Please do not report security vulnerabilities in public GitHub Issues.**
 
-Open a [**GitHub Security Advisory**](https://github.com/rishi-banerjee1/Claude-Usage-Mac-Widget/security/advisories/new) instead. This keeps the details private until a fix is released.
+Open a [**GitHub Security Advisory**](https://github.com/rishi-banerjee1/claude-usage-widget/security/advisories/new) instead. This keeps the details private until a fix is released.
 
 Include as much of the following as possible:
 

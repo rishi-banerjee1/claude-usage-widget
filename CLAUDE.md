@@ -98,7 +98,10 @@ Returns JSON with optional fields: `five_hour`, `seven_day`, `seven_day_sonnet`,
 | `CLAUDE.md` | Claude Code guidance — this file |
 | `icon.svg` | Source icon for the app |
 | `VERSION` | Version string for update checking — bumped only for material releases |
-| `assets/` | Widget screenshots for README |
+| `release.sh` | Release automation — build, package, SHA256, GitHub release, Homebrew update instructions |
+| `record-demo.sh` | Records demo GIF via screencapture + ffmpeg |
+| `assets/` | Widget screenshots and demo GIF for README |
+| `docs/` | GitHub Pages landing page |
 
 ## Logging
 

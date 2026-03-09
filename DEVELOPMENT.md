@@ -260,7 +260,7 @@ print("Debug: expectedConsumption = \(expectedConsumption)")
 ## File Structure
 
 ```
-Claude-Usage-Mac-Widget/
+claude-usage-widget/
 ├── ClaudeUsageApp.swift    - Main application code (single file, ~1610 lines)
 ├── Info.plist              - App bundle configuration (LSUIElement = true)
 ├── build.sh                - Build script
